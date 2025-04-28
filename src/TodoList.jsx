@@ -30,7 +30,7 @@ const TodoList = () => {
 
   return (
     <div className="todoslist">
-      <div>
+      <div className="input-area">
         <input
           type="text"
           placeholder="請輸入代辦事項..."
@@ -44,6 +44,7 @@ const TodoList = () => {
           <li className="todoitem" key={todo.id}>
             <p>{todo.text}</p>
             <button
+              type="button"
               onClick={() => {
                 HandleDeleteTodo(todo.id);
               }}

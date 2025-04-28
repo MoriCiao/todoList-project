@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Timer from "./timer";
+
 const Counter = () => {
   // 預設count為 0
   const [count, setCount] = useState(0);
@@ -18,20 +18,9 @@ const Counter = () => {
       <h1 className={`count ${animate ? "animate" : ""}`}>{count}</h1>
       <div>
         <p>Just a Counter</p>
-        <button onClick={() => setCount(count + 1)}>
-          <i
-            className="fa-solid fa-plus"
-            style={{ color: "rgb(15, 37, 64)" }}
-          ></i>
-        </button>
-        <button onClick={() => setCount(count - 1)}>
-          <i
-            className="fa-solid fa-minus"
-            style={{ color: "rgb(15, 37, 64)" }}
-          ></i>
-        </button>
+        <button onClick={() => setCount(count + 1)}>+</button>
+        <button onClick={() => setCount(count - 1)}>-</button>
       </div>
-      <Timer />
     </div>
   );
 };
