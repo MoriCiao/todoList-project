@@ -1,0 +1,79 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+
+body {
+    background: black;
+    color: white;
+
+    div.space {
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        margin: auto;
+        margin-top: 1rem;
+
+        .screen {
+            font-size: 4rem;
+            border: green 2px solid;
+            border-radius: 5px;
+            width: 100%;
+            height: 10vh;
+            margin-bottom: 1.5rem;
+            
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+        }
+
+        .currentNumber {
+            font-size: 2rem;
+            border: green 2px solid;
+            border-radius: 5px;
+            width: 100%;
+            height: 10vh;
+            margin-bottom: 1.5rem;
+            
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+        }
+
+        .btn-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        button {
+            border-radius: 5px;
+            margin: 0.5rem;
+            width: 4rem;
+            height: 3rem;
+            border: none;
+            
+        }
+        .active {
+            box-shadow: inset 2px 2px 5px black, 2px 2px 5px rgb(255, 255, 255);
+        }
+        .big-btn {
+            width: 9rem;
+        }
+    }
+}
