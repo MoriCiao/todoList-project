@@ -18,6 +18,14 @@ UI 顏色與風格
 }
 body{
   background-color: var(--theme-color);
+  .header-area{
+    height: 100vh;
+    display: flex;
+    flex-direction: column ;
+    gap: 15px;
+    
+    align-items: center;
+  }
   .bg-img{
     width: 100vw;
     height: 100vh;
@@ -34,7 +42,10 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10rem;
+    padding: 2rem 0 0 0;
+  }
+  .timer-area{
+    padding-top: 2rem ;
   }
   
 }
