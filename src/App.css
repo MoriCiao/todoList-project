@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/*
+UI 顏色與風格 
+使用柔和的背景色（淺灰、米白）讓任務清楚顯示 
+使用綠色或藍色表示已完成、紅色表示重要任務 
+加入動畫過渡（例如任務完成時淡出）
+*/
+:root {
+  --theme-color:rgb(250, 228, 179);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--theme-color);
+}
+body .bg-img {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../public/bg.jpg);
+  background-repeat: repeat;
+  background-size: cover;
+  filter: blur(1px);
+  opacity: 0.3;
+  position: absolute;
+  z-index: -1;
+}
+body .todolist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10rem;
+}/*# sourceMappingURL=App.css.map */
