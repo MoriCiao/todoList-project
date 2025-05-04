@@ -38,12 +38,90 @@ body{
     z-index: -1;
   }
   .todolist{
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 2rem 0 0 0;
+    h1{
+      padding: 10px;
+      width: 100%;
+
+    }
+    .input-area{
+      width: 300px;
+      display: flex;
+      align-items: center;
+      border:  gray 1px solid;
+      border-radius: 5px;
+      box-shadow: 2px 2px 1px black;
+      overflow: hidden;
+      input,button {
+          border: none;
+          height: 1.5rem;
+      }
+      input{
+        width: 80%;
+        text-indent: 5px;
+       
+      }
+      button{
+        border-style:none;
+        width: 20%;
+        padding: 5px;
+        background-color: var(--theme-color)
+      }
+    }
+    ul{
+      
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      li{
+        width: 100%;
+        padding-top: 5px;
+        list-style: none;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        justify-content: flex-start;
+        .li-sapce{
+          width: 100%;
+            padding-top: 5px;
+            list-style: none;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        // for Checked
+        .strikethrough {
+          text-decoration: line-through;
+          color: gray;
+          transition: all 0.3 ease;
+        }
+        p{
+          font-weight: bold;
+        }
+        button{
+          padding: 2px;
+          justify-content: flex-end;
+          border-radius: 5px;
+        }
+        hr{
+          height: 2px;
+          width: 100%;
+          flex: 1 0 100%;
+          border: 0;
+          background-color: black;
+        }
+      }
+    }
   }
+  
+
+
   .timer-area{
     padding-top: 2rem ;
   }

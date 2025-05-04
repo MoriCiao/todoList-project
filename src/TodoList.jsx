@@ -14,6 +14,7 @@ const TodoList = () => {
       const newTodo = {
         id: Date.now(), // 唯一id
         text: inputValue,
+        checked: false,
       };
       setTodos([...todos, newTodo]);
       // 新增之後將input重置
@@ -30,7 +31,37 @@ const TodoList = () => {
     console.log(`表單${id},內容${text}已刪除...`);
   };
 
+  const handleCheck = (id) => {
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, checked: !todo.checked } : todo
+    );
+    setTodos(updatedTodos);
+    console.log("Check !");
+  };
+
   return (
+    /*
+<fieldset>
+  <legend>Select a maintenance drone:</legend>
+
+  <div>
+    <input type="radio" id="huey" name="drone" value="huey" checked />
+    <label for="huey">Huey</label>
+  </div>
+
+  <div>
+    <input type="radio" id="dewey" name="drone" value="dewey" />
+    <label for="dewey">Dewey</label>
+  </div>
+
+  <div>
+    <input type="radio" id="louie" name="drone" value="louie" />
+    <label for="louie">Louie</label>
+  </div>
+</fieldset>
+
+*/
+
     <div className="todolist">
       <h1>To DO List</h1>
       <div className="input-area">
@@ -47,15 +78,23 @@ const TodoList = () => {
       <ul className="list-area">
         {todos.map((todo) => (
           <li className="todo-item" key={todo.id}>
-            <p>{todo.text}</p>
-            <button
-              type="button"
-              onClick={() => {
-                HandleDelete(todo.id, todo.text);
-              }}
-            >
-              Delete
-            </button>
+            <div className="li-sapce">
+              <input
+                type="checkbox"
+                checked={todo.checked}
+                onChange={() => handleCheck(todo.id)}
+              />
+              <p className={todo.checked ? "strikethrough" : ""}>{todo.text}</p>
+              <button
+                type="button"
+                onClick={() => {
+                  HandleDelete(todo.id, todo.text);
+                }}
+              >
+                Delete
+              </button>
+            </div>
+            <hr />
           </li>
         ))}
       </ul>

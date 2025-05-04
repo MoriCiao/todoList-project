@@ -8,7 +8,7 @@ const Timer = () => {
   useEffect(() => {
     timerRef.current = setInterval(() => {
       setCount((x) => x + 1);
-      console.log(timerRef.current);
+      // console.log(timerRef.current);
     }, 1000);
 
     return () => {
@@ -20,6 +20,14 @@ const Timer = () => {
   const StopTimer = () => {
     clearInterval(timerRef.current);
   };
+
+  // Start
+  const StartTimer = () => {
+    timerRef.current = setInterval(() => {
+      setCount((x) => x + 1);
+    }, 1000);
+  };
+
   return (
     <div className="timer-area">
       <h1>Hi!{name}</h1>
@@ -27,6 +35,10 @@ const Timer = () => {
       <p>秒數：{count}</p>
       <button type="button" onClick={StopTimer}>
         Stop!
+      </button>
+
+      <button type="button" onClick={StartTimer}>
+        Start!
       </button>
     </div>
   );
