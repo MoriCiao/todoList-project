@@ -80,15 +80,19 @@ body .todolist ul li {
   padding-top: 5px;
   list-style: none;
   display: flex;
+  flex-direction: row;
   gap: 5px;
   align-items: center;
   justify-content: flex-start;
 }
 body .todolist ul li .li-sapce {
+  font-size: 1rem;
+  position: relative;
   width: 100%;
-  padding-top: 5px;
+  padding-top: 0.7rem;
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   align-items: center;
   justify-content: flex-start;
@@ -100,18 +104,37 @@ body .todolist ul li .strikethrough {
 }
 body .todolist ul li p {
   font-weight: bold;
+  padding-left: 0.5rem;
+}
+body .todolist ul li .no-awesome {
+  display: none;
+}
+body .todolist ul li .awesome {
+  display: block;
+  transition: all 1s ease-in-out;
+  animation: awesome 1s forwards;
+}
+@keyframes awesome {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.8) rotate(15deg);
+  }
+  100% {
+    opacity: 1;
+  }
 }
 body .todolist ul li button {
+  background-color: transparent;
+  margin-left: auto;
+  top: 0.7rem;
   padding: 2px;
-  justify-content: flex-end;
   border-radius: 5px;
 }
 body .todolist ul li hr {
-  height: 2px;
   width: 100%;
-  flex: 1 0 100%;
-  border: 0;
-  background-color: black;
 }
 body .timer-area {
   padding-top: 2rem;

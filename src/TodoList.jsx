@@ -2,7 +2,9 @@ import React, { useState } from "react";
 
 const TodoList = () => {
   const [inputValue, setInputValue] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([
+    { id: Date.now(), text: "預設代辦事項" },
+  ]);
   const HandleInputValue = (e) => {
     console.log(`inputValue 輸入中... ， ${inputValue}`);
     setInputValue(e.target.value);
@@ -85,6 +87,9 @@ const TodoList = () => {
                 onChange={() => handleCheck(todo.id)}
               />
               <p className={todo.checked ? "strikethrough" : ""}>{todo.text}</p>
+              <span className={!todo.checked ? "no-awesome" : "awesome"}>
+                💪
+              </span>
               <button
                 type="button"
                 onClick={() => {
@@ -93,8 +98,9 @@ const TodoList = () => {
               >
                 Delete
               </button>
+              <br />
+              <hr />
             </div>
-            <hr />
           </li>
         ))}
       </ul>
