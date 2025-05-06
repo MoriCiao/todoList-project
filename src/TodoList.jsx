@@ -1,9 +1,23 @@
 import React, { useEffect, useState } from "react";
 import LocalStorageTodos from "./LocalStorageTodos";
 const TodoList = () => {
+  const now = new Date(Date.now());
+  const hour = now.getHours();
+  const minutes = now.getMinutes();
+  const timeNow = `${String(hour).padStart(2, "0")} : ${String(
+    minutes
+  ).padStart(2, "0")}`;
+  const days = ["日", "一", "二", "三", "四", "五", "六"];
+  const day = days[now.getDay()];
+  console.log(day);
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([
-    { id: Date.now(), text: "預設代辦事項", checked: false },
+    {
+      id: Date.now(),
+      text: "預設代辦事項",
+      checked: false,
+      date: timeNow,
+    },
   ]);
 
   const HandleInputValue = (e) => {
@@ -72,6 +86,9 @@ const TodoList = () => {
         {todos.map((todo) => (
           <li className="todo-item" key={todo.id}>
             <div className="li-sapce">
+              <p className="date-text">
+                {timeNow}({day})
+              </p>
               <input
                 type="checkbox"
                 checked={todo.checked}

@@ -102,6 +102,9 @@ body .todolist ul li .strikethrough {
   color: gray;
   transition: all 0.3 ease;
 }
+body .todolist ul li .date-text {
+  font-size: 0.75rem;
+}
 body .todolist ul li p {
   font-weight: bold;
   padding-left: 0.5rem;

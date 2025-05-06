@@ -8,7 +8,7 @@ const LocalStorageTodos = () => {
     if (saved) {
       setLocalTodos(JSON.parse(saved));
     }
-  }, [localTodos]);
+  }, []);
 
   return (
     <div className="getStorage-area">
