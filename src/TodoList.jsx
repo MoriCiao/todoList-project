@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import LocalStorageTodos from "./LocalStorageTodos";
 const TodoList = () => {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([
-    { id: Date.now(), text: "預設代辦事項" },
+    { id: Date.now(), text: "預設代辦事項", checked: false },
   ]);
+
   const HandleInputValue = (e) => {
     console.log(`inputValue 輸入中... ， ${inputValue}`);
     setInputValue(e.target.value);
@@ -23,7 +24,9 @@ const TodoList = () => {
       setInputValue("");
     }
 
-    console.log("目前表單裡有" + todos);
+    console.log("目前表單裡有");
+    console.log(JSON.stringify(todos));
+    console.log(todos.length);
   };
 
   // Delete
@@ -40,30 +43,18 @@ const TodoList = () => {
     setTodos(updatedTodos);
     console.log("Check !");
   };
+  // useEffect(() => {
+  //   // 新增 todo 時將資料存儲在 localStorage
+  //   localStorage.setItem("my-todos", JSON.stringify(todos));
+  //   console.log("已儲存預設 todo...");
+  // }, []);
+  useEffect(() => {
+    // 新增 todo 時將資料存儲在 localStorage
+    localStorage.setItem("my-todos", JSON.stringify(todos));
+    console.log("New todo 已儲存 ");
+  }, [todos]);
 
   return (
-    /*
-<fieldset>
-  <legend>Select a maintenance drone:</legend>
-
-  <div>
-    <input type="radio" id="huey" name="drone" value="huey" checked />
-    <label for="huey">Huey</label>
-  </div>
-
-  <div>
-    <input type="radio" id="dewey" name="drone" value="dewey" />
-    <label for="dewey">Dewey</label>
-  </div>
-
-  <div>
-    <input type="radio" id="louie" name="drone" value="louie" />
-    <label for="louie">Louie</label>
-  </div>
-</fieldset>
-
-*/
-
     <div className="todolist">
       <h1>To DO List</h1>
       <div className="input-area">
@@ -104,6 +95,27 @@ const TodoList = () => {
           </li>
         ))}
       </ul>
+      <hr />
+      {/* <fieldset>
+        <legend>Select a maintenance drone:</legend>
+
+        <div>
+          <input type="radio" id="huey" name="drone" value="huey" checked />
+          <label for="huey">Huey</label>
+        </div>
+
+        <div>
+          <input type="radio" id="dewey" name="drone" value="dewey" />
+          <label for="dewey">Dewey</label>
+        </div>
+
+        <div>
+          <input type="radio" id="louie" name="drone" value="louie" />
+          <label for="louie">Louie</label>
+        </div>
+      </fieldset> */}
+
+      <LocalStorageTodos />
     </div>
   );
 };

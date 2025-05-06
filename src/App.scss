@@ -119,6 +119,7 @@ body{
         .awesome {
           display: block;
           transition: all 1s ease-in-out;
+          text-shadow: 2px 2px 2px rgb(95, 95, 95);
           animation: awesome 1s forwards;
         }
         // checked 小動畫
@@ -143,6 +144,8 @@ body{
           top:0.7rem;
           padding: 2px;
           border-radius: 5px;
+          border: rgb(0, 0, 0)  2px solid;
+
         }
         hr{
           width: 100%;
