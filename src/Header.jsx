@@ -1,18 +1,14 @@
-import React from "react";
+import React, { createContext, useContext, useState } from "react";
 import TodoList from "./TodoList";
 import Timer from "./TimerTool";
-import Second from "./Second";
-import Example from "./Example";
 
+// 要變更主題顏色的區域
 const Header = () => {
   return (
-    <div className="header-area">
+    <div className={`header-area`}>
       <div className="bg-img"></div>
       <Timer />
       <TodoList />
-      {/* <Second /> */}
-      {/* <hr style={{ width: "100%" }} /> */}
-      {/* <Example /> */}
     </div>
   );
 };

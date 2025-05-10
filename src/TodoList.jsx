@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import LocalStorageTodos from "./LocalStorageTodos";
-import AppContext from "./ThemeContext";
-import Test from "./Test";
+
+// 特效
+import { motion, AnimatePresence } from "framer-motion";
 
 const TodoList = () => {
   // 新增日期
@@ -67,16 +68,20 @@ const TodoList = () => {
       setInputValue("");
     }
 
-    console.log("目前表單裡有");
-    console.log(JSON.stringify(todos));
-    console.log(todos.length);
+    // console.log("目前表單裡有");
+    // console.log(JSON.stringify(todos));
+    // console.log(todos.length);
   };
 
   // Delete
+  const [delMessage, setDelMessage] = useState("");
+
   const HandleDelete = (id, text) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
+
     setTodos(newTodos);
-    console.log(`表單${id},內容${text}已刪除...`);
+
+    // console.log(`表單${id},內容${text}已刪除...`);
   };
 
   const handleCheck = (id) => {
@@ -86,15 +91,11 @@ const TodoList = () => {
     setTodos(updatedTodos);
     console.log("Check !");
   };
-  // useEffect(() => {
-  //   // 新增 todo 時將資料存儲在 localStorage
-  //   localStorage.setItem("my-todos", JSON.stringify(todos));
-  //   console.log("已儲存預設 todo...");
-  // }, []);
+
   useEffect(() => {
     // 新增 todo 時將資料存儲在 localStorage
     localStorage.setItem("my-todos", JSON.stringify(todos));
-    console.log("New todo 已儲存 ");
+    // console.log("New todo 已儲存 ");
   }, [todos]);
 
   return (
@@ -119,43 +120,61 @@ const TodoList = () => {
       </fieldset>
       <div className="list-body">
         <ul className="list-area">
-          {todos.map((todo) => (
-            <li className="todo-item" key={todo.id}>
-              <div className="li-sapce">
-                <p className="date-text">
-                  {timeNow} ({day})
-                </p>
-                <div className="todo-thing">
-                  <input
-                    type="checkbox"
-                    checked={todo.checked}
-                    onChange={() => handleCheck(todo.id)}
-                  />
-                  <p className={todo.checked ? "strikethrough" : ""}>
-                    {todo.text}
+          <AnimatePresence
+            onExitComplete={() => {
+              console.log("刪除動畫已完成!");
+              setDelMessage("刪除動畫已完成!");
+              setTimeout(() => {
+                setDelMessage("");
+              }, 1000);
+            }}
+          >
+            {todos.map((todo) => (
+              <motion.li
+                className="todo-item"
+                key={todo.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20, scale: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="li-bg"></div>
+                <div className="li-sapce">
+                  <p className="date-text">
+                    {timeNow} ({day})
                   </p>
-                  <span className={!todo.checked ? "no-awesome" : "awesome"}>
-                    💪
-                  </span>
-                </div>
+                  <div className="todo-thing">
+                    <input
+                      type="checkbox"
+                      checked={todo.checked}
+                      onChange={() => handleCheck(todo.id)}
+                    />
+                    <p className={todo.checked ? "strikethrough" : ""}>
+                      {todo.text}
+                    </p>
+                    <span className={!todo.checked ? "no-awesome" : "awesome"}>
+                      💪
+                    </span>
+                  </div>
 
-                <div className="done-date">
-                  <label htmlFor="">DeadLine : </label>
-                  <input type="date" className="input-date" />
-                  <button
-                    type="button"
-                    onClick={() => {
-                      HandleDelete(todo.id, todo.text);
-                    }}
-                  >
-                    <img src="/trash-solid.svg" alt="trash" />
-                  </button>
-                </div>
+                  <div className="done-date">
+                    <label htmlFor="">DeadLine : </label>
+                    <input type="date" className="input-date" />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        HandleDelete(todo.id, todo.text);
+                      }}
+                    >
+                      <img src="/trash-solid.svg" alt="trash" />
+                    </button>
+                  </div>
 
-                <br />
-              </div>
-            </li>
-          ))}
+                  <br />
+                </div>
+              </motion.li>
+            ))}
+          </AnimatePresence>
         </ul>
       </div>
     </div>

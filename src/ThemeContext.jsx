@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext } from "react";
-
+import "./test.css";
 const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
@@ -19,7 +19,11 @@ const ThemeProvider = ({ children }) => {
 const ThemeDisplay = () => {
   const { theme } = useContext(ThemeContext);
 
-  return <h1>現在是 {theme === "light" ? "☀️ Light" : "🌙 Dark"} 模式</h1>;
+  return (
+    <h1 className={`${theme === "light" ? "dark" : "light"}`}>
+      現在是 {theme === "light" ? "☀️ Light" : "🌙 Dark"} 模式
+    </h1>
+  );
 };
 
 // 4️⃣ 一個切換主題的按鈕
