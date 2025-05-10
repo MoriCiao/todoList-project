@@ -110,9 +110,15 @@ const TodoList = () => {
               value={inputValue}
               onChange={HandleInputValue}
               ref={focusRef}
+              className="todo-input"
             />
 
-            <button type="button" ref={btnRef} onClick={HandleAdd}>
+            <button
+              className="todo-AddBtn"
+              type="button"
+              ref={btnRef}
+              onClick={HandleAdd}
+            >
               Add
             </button>
           </div>
@@ -157,7 +163,7 @@ const TodoList = () => {
                     </span>
                   </div>
 
-                  <div className="done-date">
+                  <div className="deadLine">
                     <label htmlFor="">DeadLine : </label>
                     <input type="date" className="input-date" />
                     <button
@@ -166,7 +172,11 @@ const TodoList = () => {
                         HandleDelete(todo.id, todo.text);
                       }}
                     >
-                      <img src="/trash-solid.svg" alt="trash" />
+                      <img
+                        src="/trash-solid.svg"
+                        alt="trash"
+                        className="trash"
+                      />
                     </button>
                   </div>
 

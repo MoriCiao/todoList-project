@@ -30,17 +30,42 @@ body.dark {
 .theme-change {
   border: none;
   border-radius: 10px;
-  box-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 2px black, inset 2px 2px 2px rgba(255, 255, 255, 0.3);
   background-color: transparent;
   padding: 0.5rem;
   position: absolute;
+  font-weight: bold;
   right: 0;
   margin: 1rem;
   z-index: 10;
+  transition: all 0.3s ease;
+}
+.theme-change:active {
+  box-shadow: inset 2px 2px 2px black;
+}
+
+.btn-dark {
+  color: white;
+  background-color: transparent;
+}
+
+.themeInput {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.themeAddBtn {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color: white;
+}
+
+.themeDateInput {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: white;
 }
 
 body {
-  transition: all 0.5s ease;
+  transition: all 1s ease;
   background-color: var(--theme-color);
 }
 body .header-area {
@@ -97,6 +122,7 @@ body .todolist .input-area {
 body .todolist .input-area input, body .todolist .input-area button {
   border: none;
   height: 1.5rem;
+  transition: 1s all ease;
 }
 body .todolist .input-area input {
   width: 80%;
@@ -161,21 +187,24 @@ body .todolist .list-body .list-area li .li-sapce {
   align-items: start;
   justify-content: flex-start;
 }
-body .todolist .list-body .list-area li .done-date {
+body .todolist .list-body .list-area li .deadLine {
   width: 100%;
   position: relative;
   padding-left: 0.5rem;
   background-color: transparent;
   display: block;
 }
-body .todolist .list-body .list-area li .done-date label {
+body .todolist .list-body .list-area li .deadLine label {
   padding-right: 0.5rem;
 }
-body .todolist .list-body .list-area li .done-date input {
+body .todolist .list-body .list-area li .deadLine input {
+  transition: all 1s ease;
   background-color: transparent;
   border: none;
+  border-radius: 5px;
+  padding: 0 0.4rem 0 0.2rem;
 }
-body .todolist .list-body .list-area li .done-date button {
+body .todolist .list-body .list-area li .deadLine button {
   position: absolute;
   bottom: -0.2rem;
   right: 0.5rem;
@@ -183,7 +212,7 @@ body .todolist .list-body .list-area li .done-date button {
   margin-left: auto;
   border: none;
 }
-body .todolist .list-body .list-area li .done-date button img {
+body .todolist .list-body .list-area li .deadLine button img {
   width: 1rem;
   -o-object-fit: cover;
      object-fit: cover;
