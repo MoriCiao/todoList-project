@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import LocalStorageTodos from "./LocalStorageTodos";
+import AppContext from "./ThemeContext";
+import Test from "./Test";
+
 const TodoList = () => {
+  // 新增日期
   const now = new Date(Date.now());
   const hour = now.getHours();
   const minutes = now.getMinutes();
+  const days = ["日", "一", "二", "三", "四", "五", "六"];
+  const day = days[now.getDay()];
   const timeNow = `${String(hour).padStart(2, "0")} : ${String(
     minutes
   ).padStart(2, "0")}`;
-  const days = ["日", "一", "二", "三", "四", "五", "六"];
-  const day = days[now.getDay()];
-  console.log(day);
+
+  // HTML 的 input
   const [inputValue, setInputValue] = useState("");
+
+  // todolist
   const [todos, setTodos] = useState([
     {
       id: Date.now(),
@@ -19,6 +26,28 @@ const TodoList = () => {
       date: timeNow,
     },
   ]);
+  // ADD 按鈕連動 enter
+  const btnRef = useRef(null);
+  const focusRef = useRef(null);
+  // 第一次加載頁面的時後，持續監聽
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        if (btnRef.current) {
+          // 模擬按鈕被點擊
+          btnRef.current.click();
+        }
+      }
+    };
+    focusRef.current.focus();
+
+    document.addEventListener("keydown", handleKeyDown);
+    // 清除監聽事件
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   const HandleInputValue = (e) => {
     console.log(`inputValue 輸入中... ， ${inputValue}`);
@@ -70,69 +99,65 @@ const TodoList = () => {
 
   return (
     <div className="todolist">
-      <h1>To DO List</h1>
-      <div className="input-area">
-        <input
-          type="text"
-          placeholder="請輸入代辦事項..."
-          value={inputValue}
-          onChange={HandleInputValue}
-        />
-        <button type="button" onClick={HandleAdd}>
-          Add
-        </button>
+      <fieldset className="list-header">
+        <legend>To DO List</legend>
+        <div>
+          <div className="input-area">
+            <input
+              type="text"
+              placeholder="請輸入代辦事項..."
+              value={inputValue}
+              onChange={HandleInputValue}
+              ref={focusRef}
+            />
+
+            <button type="button" ref={btnRef} onClick={HandleAdd}>
+              Add
+            </button>
+          </div>
+        </div>
+      </fieldset>
+      <div className="list-body">
+        <ul className="list-area">
+          {todos.map((todo) => (
+            <li className="todo-item" key={todo.id}>
+              <div className="li-sapce">
+                <p className="date-text">
+                  {timeNow} ({day})
+                </p>
+                <div className="todo-thing">
+                  <input
+                    type="checkbox"
+                    checked={todo.checked}
+                    onChange={() => handleCheck(todo.id)}
+                  />
+                  <p className={todo.checked ? "strikethrough" : ""}>
+                    {todo.text}
+                  </p>
+                  <span className={!todo.checked ? "no-awesome" : "awesome"}>
+                    💪
+                  </span>
+                </div>
+
+                <div className="done-date">
+                  <label htmlFor="">DeadLine : </label>
+                  <input type="date" className="input-date" />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      HandleDelete(todo.id, todo.text);
+                    }}
+                  >
+                    <img src="/trash-solid.svg" alt="trash" />
+                  </button>
+                </div>
+
+                <br />
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul className="list-area">
-        {todos.map((todo) => (
-          <li className="todo-item" key={todo.id}>
-            <div className="li-sapce">
-              <p className="date-text">
-                {timeNow}({day})
-              </p>
-              <input
-                type="checkbox"
-                checked={todo.checked}
-                onChange={() => handleCheck(todo.id)}
-              />
-              <p className={todo.checked ? "strikethrough" : ""}>{todo.text}</p>
-              <span className={!todo.checked ? "no-awesome" : "awesome"}>
-                💪
-              </span>
-              <button
-                type="button"
-                onClick={() => {
-                  HandleDelete(todo.id, todo.text);
-                }}
-              >
-                Delete
-              </button>
-              <br />
-              <hr />
-            </div>
-          </li>
-        ))}
-      </ul>
-      <hr />
-      {/* <fieldset>
-        <legend>Select a maintenance drone:</legend>
-
-        <div>
-          <input type="radio" id="huey" name="drone" value="huey" checked />
-          <label for="huey">Huey</label>
-        </div>
-
-        <div>
-          <input type="radio" id="dewey" name="drone" value="dewey" />
-          <label for="dewey">Dewey</label>
-        </div>
-
-        <div>
-          <input type="radio" id="louie" name="drone" value="louie" />
-          <label for="louie">Louie</label>
-        </div>
-      </fieldset> */}
-
-      <LocalStorageTodos />
     </div>
   );
 };

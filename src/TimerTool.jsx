@@ -30,15 +30,15 @@ const Timer = () => {
 
   return (
     <div className="timer-area">
-      <h1>Hi!{name}</h1>
-      <p>已在目前頁面停留</p>
+      <h3>Hi ! {name}</h3>
+      <p>您已在目前頁面停留</p>
       <p>秒數：{count}</p>
       <button type="button" onClick={StopTimer}>
-        Stop!
+        Stop !
       </button>
 
       <button type="button" onClick={StartTimer}>
-        Start!
+        Start !
       </button>
     </div>
   );

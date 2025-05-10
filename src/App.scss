@@ -8,23 +8,26 @@ UI 顏色與風格
 
 :root{
   --theme-color:rgb(250, 228, 179);
+  --border-color:#CA7A2C;
 }
 *{
-
+  
 
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 body{
+
+  overflow: hidden;
   background-color: var(--theme-color);
   .header-area{
+    position:relative ;
     height: 100vh;
     display: flex;
     flex-direction: column ;
-    gap: 15px;
-    
-    align-items: center;
+    gap: 20px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
   }
   .bg-img{
     width: 100vw;
@@ -32,21 +35,31 @@ body{
     background-image: url(../public/bg.jpg);
     background-repeat: repeat;
     background-size: cover;
+    top: 0;
+    left: 0;
     filter: blur(1px);
     opacity: 0.3;
     position: absolute;
     z-index: -1;
   }
   .todolist{
-
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    padding: 2rem 0 0 0;
-    h1{
-      padding: 10px;
-      width: 100%;
+    align-items: start;
+
+    fieldset{
+      box-sizing: content-box;
+      width: 300px;
+      padding: 1rem;
+      color: var(--border-color);
+    }
+    legend{
+      text-align: center;
+      font-size: 2rem;
+      padding: 0 3rem 0 3rem;
+      font-weight: 600;
+
 
     }
     .input-area{
@@ -57,6 +70,7 @@ body{
       border-radius: 5px;
       box-shadow: 2px 2px 1px black;
       overflow: hidden;
+      
       input,button {
           border: none;
           height: 1.5rem;
@@ -71,97 +85,182 @@ body{
         width: 20%;
         padding: 5px;
         background-color: var(--theme-color);
-
-
       }
-    }
-    ul{
       
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      li{
-        width: 100%;
-        padding-top: 5px;
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        gap: 5px;
-        align-items: center;
-        justify-content: flex-start;
-        .li-sapce{
-          font-size: 1rem;
-          position: relative;
-          
-          width: 100%;
-          padding-top: 0.7rem;
-          list-style: none;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 5px;
-          align-items: center;
-          justify-content: flex-start;
-        }
-        // for Checked
-        .strikethrough {
-          text-decoration: line-through;
-          color: gray;
-          transition: all 0.3 ease;
-        }
-        .date-text{
-          font-size: 0.75rem;
-        }
-        p{
-          font-weight: bold;
-          padding-left: 0.5rem;
-          
-        }
-        .no-awesome{
-          display: none;
-        }
-        .awesome {
-          display: block;
-          transition: all 1s ease-in-out;
-          text-shadow: 2px 2px 2px rgb(95, 95, 95);
-          animation: awesome 1s forwards;
-        }
-        // checked 小動畫
-        @keyframes awesome {
-          0%{
-            opacity: 0;
-
-            
-          }
-          50%{
-            opacity: 1;
-            transform: translateY(-10px) scale(1.8) rotate(15deg);
-          }
-          100%{
-            opacity: 1;
-
-          }
-        }
-        button{
-          background-color: transparent;
-          margin-left: auto;
-          top:0.7rem;
-          padding: 2px;
-          border-radius: 5px;
-          border: rgb(0, 0, 0)  2px solid;
-
-        }
-        hr{
-          width: 100%;
-         
-        }
-      }
     }
+    .list-body{
+
+      width: 100%;;
+      .list-area{
+          margin: 0;
+          display: grid;
+          grid-template-columns: repeat(3 ,1fr);
+          gap: 1.5rem;
+          width: 100%;
+          
+          
+          li {
+            margin-top: 1rem;
+            border-radius: 5px;
+            box-shadow: 5px 5px 3px rgba(0,0,0,.3);
+            height: 100px;
+            width: 100%;
+            max-width: 350px;
+            padding-top: 5px;
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            align-items: start;
+            justify-content: flex-start;
+            transition: all 0.5s ease-in-out;
+            background-color: transparent;
+            position: relative;
+            &:hover{
+              transform: translate(-10px, -10px);
+              box-shadow: 5px 5px 10px rgba(0, 0, 0, .6);
+              
+            }
+            .li-sapce {
+              font-size: 1rem;
+              
+              width: 100%;
+              padding-top: 0.7rem;
+              list-style: none;
+              display: flex;
+              flex-direction: column;
+              flex-wrap: wrap;
+              // gap: 5px;
+              align-items: start;
+              justify-content: flex-start;
+              
+            }
+            .done-date {
+              width: 100%;
+              position: relative;
+              padding-left: 0.5rem;
+              background-color: transparent;
+              display: block;
+              label{
+                padding-right: 0.5rem;
+              }
+              input{
+                background-color: transparent;
+                border: none;
+              }
+              button {
+                position: absolute;
+                bottom: -0.2rem;
+                right: 0.5rem;
+                background-color: transparent;
+                margin-left: auto;
+                border: none;
+
+                img {
+                  width: 1rem;
+                  object-fit: cover;
+                  cursor: pointer;
+                }
+
+              }
+            }
+      
+            // for Checked
+            .strikethrough {
+              text-decoration: line-through;
+              color: gray;
+              transition: all 0.3 ease;
+            }
+      
+            .date-text {
+              font-size: 0.75rem;
+              
+            }
+            .todo-thing {
+              padding-left: 0.5rem;
+              display: flex;
+              
+            }
+            p {
+              font-weight: bold;
+              padding-left: 0.5rem;
+      
+            }
+      
+            .no-awesome {
+              display: none;
+            }
+      
+            .awesome {
+              display: block;
+              transition: all 1s ease-in-out;
+              text-shadow: 2px 2px 2px rgb(95, 95, 95);
+              animation: awesome 1s forwards;
+            }
+      
+            // checked 小動畫
+            @keyframes awesome {
+              0% {
+                opacity: 0;
+      
+      
+              }
+      
+              50% {
+                opacity: 1;
+                transform: translateY(-10px) scale(1.8) rotate(15deg);
+              }
+      
+              100% {
+                opacity: 1;
+      
+              }
+            }
+      
+            
+      
+            hr {
+              width: 100%;
+      
+            }
+          }
+        }
+    }
+    
   }
   
 
 
   .timer-area{
     padding-top: 2rem ;
+    display: flex;
+    height: 3rem;
+    align-items: center;
+    gap: 1rem;
+    button{
+      background-color: transparent;
+      padding: 3px;
+      border-radius: 5px;
+      transition: all 0.3s ease-in-out;
+      &:hover{
+        box-shadow: 2px 2px 2px var(--border-color);
+        text-shadow: -1px -1px 5px white;
+      }
+    }
   }
   
+}
+@media (max-width : 950px) {
+  .list-area {
+    border: red 1px solid;
+    display: flex !important;
+    flex-direction:column;
+    gap: 10px;
+    width: 100vw;
+    align-items: center;
+    li{
+      
+      max-width: 80vw !important;
+    }
+  }
 }

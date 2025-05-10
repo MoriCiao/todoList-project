@@ -11,7 +11,7 @@ const Header = () => {
       <Timer />
       <TodoList />
       {/* <Second /> */}
-      <hr style={{ width: "100%" }} />
+      {/* <hr style={{ width: "100%" }} /> */}
       {/* <Example /> */}
     </div>
   );
