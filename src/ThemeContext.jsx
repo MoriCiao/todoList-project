@@ -33,7 +33,7 @@ const ThemeToggleButton = () => {
   return <button onClick={toggleTheme}>切換主題</button>;
 };
 
-// 5️⃣ App 包起來
+// 5️⃣ AppContext 包起來exprot 給Header
 const AppContext = () => {
   return (
     <ThemeProvider>

@@ -139,10 +139,16 @@ const TodoList = () => {
               <motion.li
                 className="todo-item"
                 key={todo.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20, scale: 0 }}
+                exit={{ opacity: 0, y: -50, scale: 0.5 }}
                 transition={{ duration: 0.5 }}
+                whileHover={{
+                  x: -10,
+                  y: -10,
+                  boxShadow: "10px 10px 10px rgba(0,0,0,0.5)",
+                  backgroundColor: "rgba(255,255,255,0.1)",
+                }}
               >
                 <div className="li-bg"></div>
                 <div className="li-sapce">

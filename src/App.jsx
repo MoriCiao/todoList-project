@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import "./App.css";
-import "./test";
+
 import Header from "./Header";
 
 const ThemeContext = createContext();
@@ -39,14 +39,15 @@ const ThemeProvider = ({ children }) => {
       themeAddBtn.classList.remove("themeAddBtn");
     }
 
-    const themeDateInput = document.querySelector(".input-date") || null;
-    if (theme === "dark") {
-      themeDateInput.classList.add("themeDateInput");
-    } else if (theme === "light") {
-      themeDateInput.classList.remove("themeDateInput");
-    } else {
-      return;
-    }
+    const themeDateInput = document.querySelector(".input-date");
+
+    if (themeDateInput) {
+      if (theme === "dark") {
+        themeDateInput.classList.add("themeDateInput");
+      } else if (theme === "light") {
+        themeDateInput.classList.remove("themeDateInput");
+      }
+    } else return; // 如果 ClassName 不存在 則return動作
   }, [theme]);
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
