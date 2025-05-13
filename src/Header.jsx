@@ -3,12 +3,12 @@ import TodoList from "./TodoList";
 import Timer from "./TimerTool";
 
 // 要變更主題顏色的區域
-const Header = () => {
+const Header = (theme) => {
   return (
     <div className={`header-area`}>
       <div className="bg-img"></div>
       <Timer />
-      <TodoList />
+      <TodoList theme={theme} />
     </div>
   );
 };

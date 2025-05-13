@@ -19,7 +19,6 @@ UI 顏色與風格
 
 body.light {
   color: black;
-  background-color: var(--theme-color);
 }
 
 body.dark {
@@ -64,11 +63,11 @@ body.dark {
 
 .themeDateInput {
   background-color: rgba(255, 255, 255, 0.1) !important;
-  color: white;
+  color: white !important;
 }
 
 body {
-  transition: all 1s ease;
+  transition: all 0.5s ease-out;
   background-color: var(--theme-color);
 }
 body .header-area {
@@ -106,6 +105,8 @@ body .todolist fieldset {
   box-sizing: content-box;
   width: 300px;
   padding: 1rem;
+  border-radius: 1rem;
+  border: 3px rgb(0, 0, 0) double;
 }
 body .todolist legend {
   text-align: center;
@@ -141,14 +142,16 @@ body .todolist .list-body {
   width: 100%;
 }
 body .todolist .list-body .list-area {
-  padding: 0.5rem 0 1rem 0;
+  padding: 1rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  margin: auto;
+  gap: 1rem;
   width: 100%;
   overflow-y: overlay;
   scrollbar-width: none;
   scroll-behavior: smooth;
+  transition: all 1s ease-in-out;
 }
 body .todolist .list-body .list-area li {
   margin-top: 1rem;
@@ -158,7 +161,6 @@ body .todolist .list-body .list-area li {
   box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3);
   height: 100px;
   width: 100%;
-  max-width: 350px;
   list-style: none;
   display: flex;
   flex-direction: row;
@@ -217,13 +219,13 @@ body .todolist .list-body .list-area li .deadLine button img {
      object-fit: cover;
   cursor: pointer;
 }
+body .todolist .list-body .list-area li .input-date {
+  font-size: 0.75rem;
+}
 body .todolist .list-body .list-area li .strikethrough {
   text-decoration: line-through;
   color: gray;
   transition: all 0.3 ease;
-}
-body .todolist .list-body .list-area li .date-text {
-  font-size: 0.75rem;
 }
 body .todolist .list-body .list-area li .todo-thing {
   padding-left: 0.5rem;
@@ -273,11 +275,12 @@ body .timer-area button {
   background-color: transparent;
   padding: 3px;
   border-radius: 5px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease;
 }
 body .timer-area button:hover {
-  box-shadow: 2px 2px 2px var(--border-color);
+  box-shadow: 2px 2px 5px black;
   text-shadow: -1px -1px 5px white;
+  transform: translate(-2px, -2px);
 }
 
 @media (max-width: 950px) {
@@ -289,9 +292,8 @@ body .timer-area button:hover {
     display: block;
   }
   .list-area {
-    display: flex !important;
-    flex-direction: column;
-    gap: 10px;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem;
     width: 100vw;
     align-items: center;
     overflow-y: overlay;
@@ -300,5 +302,13 @@ body .timer-area button:hover {
   }
   .list-area li {
     max-width: 80vw !important;
+  }
+}
+@media (max-width: 768px) {
+  .list-area {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+  li {
+    margin: auto;
   }
 }/*# sourceMappingURL=App.css.map */
