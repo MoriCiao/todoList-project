@@ -51,6 +51,7 @@ const TodoList = () => {
             >
               Delete
             </button>
+            <hr className="underline" />
           </li>
         ))}
       </ul>

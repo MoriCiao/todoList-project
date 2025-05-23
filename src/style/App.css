@@ -19,6 +19,13 @@ body {
   margin: 0 1.5rem 0 1.5rem;
   border: 1px red solid;
 }
+body button {
+  box-shadow: inset 2px 2px 5px white;
+  border-radius: 5px;
+  padding: 3px;
+  background-color: var(--text-color2);
+  cursor: pointer;
+}
 body .container {
   display: flex;
   justify-content: space-between;
@@ -27,13 +34,13 @@ body .container {
 body .tool-area {
   background-color: var(--item-bg);
   border-radius: 20px;
-  border: rgb(0, 255, 119) 2px solid;
-  width: 500px;
+  border: rgb(255, 255, 255) 2px solid;
+  box-shadow: 10px 10px 1px rgb(51, 51, 51);
+  width: 300px;
   padding: 20px;
   margin: 20px;
   height: 300px;
   display: flex;
-  flex: 1;
 }
 body .todoslist {
   width: 100%;
@@ -42,6 +49,9 @@ body .todoslist {
   overflow-y: hidden;
 }
 body .todoslist .input-area {
+  position: fixed;
+  top: 10px;
+  z-index: 0;
   height: 15%;
   display: flex;
   align-items: center;
@@ -62,9 +72,16 @@ body .todoslist .input-area input {
 body .todoslist .input-area button {
   width: 20%;
   background-color: var(--text-color2);
-  cursor: pointer;
+  border-radius: 0 0 0 0;
 }
 body .todoslist ul {
+  position: relative;
+  margin-top: 2.5rem;
+  padding: 0 10px 0 0;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-color) var(--text-color);
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -75,13 +92,55 @@ body .todoslist ul li {
   align-items: center;
   max-width: 500px;
   margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  height: 1.5rem;
+}
+body .todoslist ul li p {
+  text-indent: 5px;
 }
 body .todoslist ul li button {
   position: absolute;
   bottom: 0;
   right: 0;
-  border-radius: 5px;
-  padding: 3px;
+}
+body .todoslist ul li .underline {
+  position: absolute;
+  bottom: -5px;
+  width: 100%;
+  height: 1px;
+  border: none;
+  background-color: var(--text-color2);
+}
+body .counter {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+body .counter .count {
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  text-shadow: black 3px 3px 2px;
+}
+body .counter .animate {
+  color: antiquewhite;
+  text-shadow: black 10px 10px 5px;
+  translate: -10px -10px;
+  transform: scale(1.2);
+}
+body .counter button {
+  background-color: var(--text-color2);
+  border-radius: 20px;
+  margin: 0.5rem;
+  width: 4rem;
+  height: 3rem;
+  box-shadow: inset 3px 3px 5px white, 1px 1px 5px black;
+}
+body .counter button:active {
+  box-shadow: inset -3px -3px 5px white, -1px -1px 2px black;
 }
 body .date {
   position: absolute;

@@ -1,24 +1,17 @@
-import { useState } from "react";
 import "./style/App.css";
-import Counter from "./Counter";
-import Timer from "./timer";
-import TodoList from "./TodoList";
-import Weather from "./weather";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./page/Home";
+import About from "./page/About";
+import ProductDetail from "./page/ProductDetail";
 function App() {
   return (
-    <div className="container">
-      <div className="tool-area">
-        <TodoList />
-      </div>
-      <div className="tool-area">
-        <Counter />
-      </div>
-      <div className="tool-area">
-        <Weather />
-      </div>
-
-      <Timer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
